@@ -15,7 +15,6 @@ pipelines:
       component: backend
     secure_variables:
       vault_token: "AES:/jvkC1Lso4gftkDu9XOmEg==:N8TCA8tmeOrSSuPA10zqTTvLhGmOI+Ut6sCe4jBH6BQ="
-      SSH_PASSWORD: "AES:GJpOsKchZolqf2Gylrqymw==:48C77QmHmE7ihFUNFmoXRw=="
     template: ansible-templates
 
 #
