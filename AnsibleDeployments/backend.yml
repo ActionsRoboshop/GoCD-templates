@@ -11,9 +11,6 @@ pipelines:
         shallow_clone: true
         auto_update: true
         branch: main
-    secure_variables:
-      SSH_PASSWORD: "AES:GJpOsKchZolqf2Gylrqymw==:48C77QmHmE7ihFUNFmoXRw=="
-      vault_token: "AES:Ro4nPk9BFkts9PbZ7hR+TQ==:3orYTpuPUkzlbp868dzSkAmVr6hMmCztFWPZx/CwdL8="
     environment_variables:
       component: backend
     template: ansible-templates
