@@ -26,4 +26,4 @@ pipelines:
             job1:
               timeout: 0
               tasks:
-                - exec: {arguments: [''-i','mysql-dev.azcart.online,'','-e','env=$env','-e','component=$component','role-call.yml'],command: ansible-playbook, run_if: passed}
+                - exec: {arguments: [-i,'mysql-dev.azcart.online,',-e,"env=$env",-e,"component=$component",role-call.yml],command: ansible-playbook, run_if: passed}
