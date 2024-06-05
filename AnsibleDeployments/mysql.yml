@@ -1,13 +1,13 @@
 format_version: 10
 pipelines:
-  ansible-template:
-    group: ansibleTemplate
+  mysql:
+    group: Expense-Ansible
     label_template: ${COUNT}
     lock_behavior: none
     display_order: -1
     materials:
       git-214f6fa:
-        git: https://github.com/ActionsRoboshop/GoCD-templates.git
+        git: https://github.com/ActionsRoboshop/expense-ansible.git
         shallow_clone: false
         auto_update: true
         branch: main
@@ -15,8 +15,7 @@ pipelines:
       - DEV:
           environment_variables:
             env: dev
-          secure_variables:
-            vault_token: "AES:/jvkC1Lso4gftkDu9XOmEg==:N8TCA8tmeOrSSuPA10zqTTvLhGmOI+Ut6sCe4jBH6BQ="
+            component: mysql
           fetch_materials: true
           keep_artifacts: false
           clean_workspace: false
@@ -27,10 +26,4 @@ pipelines:
             job1:
               timeout: 0
               tasks:
-                - exec:
-                    arguments:
-                      - ansible.sh
-                    command: bash
-                    run_if: passed
-
-#
+                - exec: {arguments: [''-i','mysql-dev.azcart.online,'','-e','env=$env','-e','component=$component','role-call.yml'],command: ansible-playbook, run_if: passed}

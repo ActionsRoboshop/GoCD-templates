@@ -1,6 +1,6 @@
 format_version: 10
 pipelines:
-  backend:
+  servers-create:
     group: Expense-Ansible
     label_template: ${COUNT}
     lock_behavior: none
@@ -14,7 +14,7 @@ pipelines:
     stages:
       - DEV:
           environment_variables:
-            env: dev
+            server_name: ""
           fetch_materials: true
           keep_artifacts: false
           clean_workspace: false
@@ -27,7 +27,6 @@ pipelines:
               tasks:
                 - exec:
                     arguments:
-                      - ansible.sh
-                      - frontend
+                      - create-servers.sh
                     command: bash
                     run_if: passed
