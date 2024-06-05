@@ -5,6 +5,8 @@ pipelines:
     label_template: ${COUNT}
     lock_behavior: none
     display_order: -1
+    environment_variables:
+      server_name: ""
     materials:
       git-214f6fa:
         git: https://github.com/ActionsRoboshop/expense-ansible.git
@@ -13,8 +15,6 @@ pipelines:
         branch: main
     stages:
       - DEV:
-          environment_variables:
-            server_name: ""
           fetch_materials: true
           keep_artifacts: false
           clean_workspace: false
