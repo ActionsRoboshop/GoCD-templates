@@ -15,6 +15,7 @@ pipelines:
       - DEV:
           environment_variables:
             env: dev
+            component: backend
           fetch_materials: true
           keep_artifacts: false
           clean_workspace: false
@@ -25,9 +26,4 @@ pipelines:
             job1:
               timeout: 0
               tasks:
-                - exec:
-                    arguments:
-                      - ansible.sh
-                      - frontend
-                    command: bash
-                    run_if: passed
+                - exec: {arguments: [-i,'backend-dev.azcart.online,',-e,"env=$env",-e,"component=$component",-e,ansible_user=ec2-user,-e,ansible_password=DevOps321,role-call.yml],command: ansible-playbook, run_if: passed}
