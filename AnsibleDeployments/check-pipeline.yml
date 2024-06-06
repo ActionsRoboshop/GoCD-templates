@@ -1,0 +1,91 @@
+format_version: 10
+pipelines:
+  backend:
+    group: App-Deployment
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    materials:
+      git-ee32f55:
+        git: https://github.com/vikramdevopsb79/expense-ansible.git
+        shallow_clone: true
+        auto_update: true
+        branch: main
+    stages:
+      - DEV:
+          fetch_materials: true
+          approval:
+            type: manual
+          jobs:
+            ansible:
+              timeout: 0
+              tasks:
+                - exec:
+                    arguments:
+                      - -i
+                      - backend-dev.vikramdevops.tech,
+                      - -e
+                      - ansible_user=ec2-user
+                      - -e
+                      - ansible_password=DevOps321
+                      - -e
+                      - role_name=backend
+                      - -e
+                      - env=dev
+                      - expense.yml
+                    command: ansible-playbook
+                    run_if: passed
+      - QA:
+          fetch_materials: true
+          approval:
+            type: manual
+            allow_only_on_success: false
+          jobs:
+            ansible:
+              timeout: 0
+              tasks:
+                - exec:
+                    arguments:
+                      - -l
+                    command: ls
+                    run_if: passed
+      - STAGE:
+          fetch_materials: true
+          approval:
+            type: manual
+            allow_only_on_success: false
+          jobs:
+            ansible:
+              timeout: 0
+              tasks:
+                - exec:
+                    arguments:
+                      - -l
+                    command: ls
+                    run_if: passed
+      - PROD:
+          fetch_materials: true
+        environment_variables:
+          env: prod
+          approval:
+            type: manual
+            allow_only_on_success: false
+          jobs:
+            ansible:
+              timeout: 0
+              tasks:
+                - exec:
+                    arguments:
+                      - -i
+                      - backend-prod.vikramdevops.tech,
+                      - -e
+                      - ansible_user=ec2-user
+                      - -e
+                      - ansible_password=DevOps321
+                      - -e
+                      - role_name=backend
+                      - -e
+                      - env=prod
+                      - expense.yml
+                    command: ansible-playbook
+                    run_if: passed
