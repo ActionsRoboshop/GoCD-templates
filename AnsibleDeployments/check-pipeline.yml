@@ -67,7 +67,7 @@ pipelines:
          fetch_materials: true
          environment_variables:
           env: prod
-          approval:
+         approval:
             type: manual
             allow_only_on_success: false
          jobs:
