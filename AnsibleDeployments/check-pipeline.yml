@@ -10,13 +10,13 @@ pipelines:
         branch: main
     stages:
     - DEV:
-          fetch_materials: true
-          environment variables:
+        fetch_materials: true
+        environment variables:
             env: dev
-          approval:
+        approval:
             type: manual
-          jobs:
-            ansible-playbook:
+        jobs:
+          ansible-playbook:
             tasks:
                 - exec:
                     arguments:
