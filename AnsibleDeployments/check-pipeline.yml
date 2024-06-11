@@ -1,6 +1,6 @@
 format_version: 10
 pipelines:
-  backend:
+  sample:
     group: defaultGroup
     materials:
       git-da613e5:
