@@ -1,6 +1,6 @@
 format_version: 10
 pipelines:
-  backend1:
+  backend:
     group: Expense-Ansible
     label_template: ${COUNT}
     lock_behavior: none
