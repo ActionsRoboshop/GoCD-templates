@@ -11,6 +11,8 @@ pipelines:
         shallow_clone: false
         auto_update: true
         branch: main
+    secure_variables:
+      NEW_RELIC_LICENSE_KEY: "AES:LDUvxiOme9KjwHs2NRkcKQ==:aa7b5BYV4mm3FGTPwbu2ozhOAeazQMX5CxCWOIjAiHgrzmLyoMVvogzOt+EC+wE6"
     stages:
       - DEV:
           environment_variables:
